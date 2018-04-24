@@ -51,6 +51,27 @@ public class VideoClubTest extends TestCase {
 		assertTrue("Calcula mal el alquiler", salidaEsperada.equals(salida));
 
 	}
+	
+	public void testAlquilerHTML() {
+
+		Rental r1 = new Rental(m11, 5);
+		Rental r2 = new Rental(m0, 1);
+		Rental r3 = new Rental(m2, 10);
+
+		c1.addRental(r1);
+		c1.addRental(r2);
+		c1.addRental(r3);
+
+		String salida = c1.HTMLstatement();
+
+		String salidaEsperada = new String("<h1>Rental Record for Manuel</h1>\n"
+				+ "<h2>Sky Captain 15.0</h2>\n" + "<h2>Accion Mutante 2.0</h2>\n"
+				+ "<h2>Hermano Oso 12.0</h2>\n" + "<p>Amount owed is 29.0</p>\n"
+				+ "<p>You earned 4 frequent renter points</p>");
+
+		assertTrue("Calcula mal el alquiler", salidaEsperada.equals(salida));
+
+	}
 
 	public static void main(String[] args) {
 		junit.textui.TestRunner.run(suite());

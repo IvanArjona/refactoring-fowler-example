@@ -38,12 +38,13 @@ public class Customer {
 		
 		while (rentals.hasNext()) {
 			Rental each = rentals.next();
+			Movie movie = each.getMovie();
 			// determine amounts for each line
 			double amount = each.amount();
 			frequentRenterPoints += each.points();
 			
 			// show figures for this rental
-			result += "\t" + each.getMovie().getTitle() + "\t"
+			result += "\t" + movie.getTitle() + "\t"
 					+ amount + "\n";
 			
 			totalAmount += amount;
@@ -53,6 +54,33 @@ public class Customer {
 		result += "Amount owed is " + totalAmount + "\n";
 		result += "You earned " + frequentRenterPoints
 				+ " frequent renter points";
+		return result;
+	}
+	
+	public String HTMLstatement() {
+		double totalAmount = 0;
+		int frequentRenterPoints = 0;
+		Iterator<Rental> rentals = _rentals.iterator();
+		String result = "<h1>Rental Record for " + getName() + "</h1>\n";
+		
+		while (rentals.hasNext()) {
+			Rental each = rentals.next();
+			Movie movie = each.getMovie();
+			// determine amounts for each line
+			double amount = each.amount();
+			frequentRenterPoints += each.points();
+			
+			// show figures for this rental
+			result += "<h2>" + movie.getTitle() + " "
+					+ amount + "</h2>\n";
+			
+			totalAmount += amount;
+		}
+		
+		// add footer lines
+		result += "<p>Amount owed is " + totalAmount + "</p>\n";
+		result += "<p>You earned " + frequentRenterPoints
+				+ " frequent renter points</p>";
 		return result;
 	}
 }

@@ -20,7 +20,9 @@ public class Aplicacion {
 		c1.addRental(r3);
 
 		System.out.println(c1.statement());
-
+		System.out.println();
+		System.out.println();
+		System.out.println(c1.HTMLstatement());
 	}
 
 }
